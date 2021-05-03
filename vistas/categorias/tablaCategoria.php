@@ -1,6 +1,9 @@
 <?php
   session_start();
-  $id_usuario = $_SESSION['id_usuarios'];
+  require_once "../../clases/Conexion.php";
+  $id_usuarios = $_SESSION['id_usuarios'];
+  $conexion = new Conexion();
+  $conexion = $conexion->conectar();
 ?>
 <div class="table-responsive">
   <table class="table table-hover" id="tablaCategoriaDataTable">
@@ -13,20 +16,33 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td style="text-align: center;">
+      <?php
+        $sql = "SELECT id_categoria,
+                       nombre,
+                       fechaInsert
+                FROM t_categorias
+                WHERE id_usuarios = '$id_usuarios'";
+        $result = mysqli_query($conexion, $sql);
+        while($mostrar = mysqli_fetch_array($result)){
+          $id_categoria = $mostrar['id_categoria'];
+      ?>
+      <tr style="text-align: center;">
+        <td><?php echo $mostrar['nombre'];?></td>
+        <td><?php echo $mostrar['fechaInsert'];?></td>
+        <td>
           <span class="btn btn-outline-info btn-sm">
             <span class="fas fa-edit"></span>
           </span>
         </td>
-        <td style="text-align: center;">
-          <span class="btn btn-outline-danger btn-sm">
+        <td>
+          <span class="btn btn-outline-danger btn-sm" onclick="eliminarCategoria('<?php echo $id_categoria;?>')">
             <span class="fas fa-trash"></span>
           </span>
         </td>
       </tr>
+      <?php
+        }
+      ?>
     </tbody>
   </table>
 </div>

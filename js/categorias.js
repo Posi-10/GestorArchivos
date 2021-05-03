@@ -17,6 +17,7 @@ function agregarCategoria() {
             success: function(respuesta) {
                 respuesta = respuesta.trim();
                 if (respuesta == 1) {
+                    $('#tablasCategorias').load("categorias/tablaCategoria.php");
                     $('#nombreCategoria').val("");
                     swal({
                         title: "Correcto",
@@ -34,6 +35,57 @@ function agregarCategoria() {
                         timer: 2000,
                     });
                 }
+            }
+        });
+    }
+}
+
+function eliminarCategoria(id_categoria) {
+    id_categoria = parseInt(id_categoria);
+    if (id_categoria < 1) {
+        swal({
+            title: "Error",
+            icon: "error",
+            text: "¡No tienes id de categorias!",
+            button: false,
+            timer: 2000,
+        });
+        return false;
+    } else {
+        swal({
+            title: "Alvertencia",
+            text: "¿Estas seguro de eliminar esta categoria?\nUna vez eliminada, no hay vuelta atras",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajax({
+                    type: "POST",
+                    data: "id_categoria=" + id_categoria,
+                    url: "../procesos/categorias/eliminarCategoria.php",
+                    success: function(respuesta) {
+                        respuesta = respuesta.trim();
+                        if (respuesta == 1) {
+                            $('#tablasCategorias').load("categorias/tablaCategoria.php");
+                            swal({
+                                title: "Correcto",
+                                icon: "success",
+                                text: "¡Se elimino correctamente!",
+                                button: false,
+                                timer: 2000,
+                            });
+                        } else {
+                            swal({
+                                title: "Error",
+                                icon: "error",
+                                text: "¡Fallo al eliminar!",
+                                button: false,
+                                timer: 2000,
+                            });
+                        }
+                    }
+                });
             }
         });
     }
