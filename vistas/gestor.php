@@ -25,23 +25,29 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="frmArchivos" enctype="multipart/form-data" method="post">
+          <form id="frmArchivos" enctype="multipart/form-data" method="post" class="form-group">
             <label>Categoria</label>
-            <div id="categiriasLoad"></div>
-            <input type="file" name="archivos" id="archivos" class="form-control">
+            <div id="categoriasLoad"></div>
+            <label>Introduce tu Archivo</label>
+            <input type="file" class="form-control" name="archivos[ ]" id="archivos[ ]" multiple="">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" class="btn btn-success" id="btnGuardarArchivos">Guardar</button>
         </div>
       </div>
     </div>
   </div>
 <?php include "footer.php";?>
+<script src="../js/gestor.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     $('#tablaGestorArchivos').load("gestor/tablaGestor.php");
+    $('#categoriasLoad').load("categorias/selectCategorias.php");
+    $('#btnGuardarArchivos').click(function(){
+      agregarArchivosGestor();
+    });
   });
 </script>
 <?php
