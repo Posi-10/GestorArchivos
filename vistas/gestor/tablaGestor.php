@@ -27,6 +27,7 @@
       <table class="table table-hover" id="tablaGestorDataTable">
         <thead class="thead-dark">
           <tr style="text-align: center;">
+            <th>Categoria</th>
             <th>Nombre</th>
             <th>Tipo de archivo</th>
             <th>Descargar</th>
@@ -39,8 +40,10 @@
             while($mostrar = mysqli_fetch_array($exito)){
               $rutaDescarga = "../archivos/" . $id_usuarios . "/" . $mostrar['nombreArchivo'];
               $nombreArchivo = $mostrar['nombreArchivo'];
+              $id_archivo = $mostrar['idArchivo'];
           ?>
           <tr style="text-align: center;">
+            <th><?php echo $mostrar['categoria'];?></th>
             <td><?php echo $mostrar['nombreArchivo'];?></td>
             <td><?php echo $mostrar['tipoArchivo'];?></td>
             <td>
@@ -50,7 +53,7 @@
             </td>
             <td></td>
             <td style="text-align: center;">
-            <span type="button" class="btn btn-outline-danger btn-sm">
+            <span type="button" class="btn btn-outline-danger btn-sm" onclick="eliminarArchivo('<?php echo $id_archivo; ?>')">
               <span class="fas fa-trash"></span>
             </span>
             </td>

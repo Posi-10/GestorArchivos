@@ -28,7 +28,7 @@
             <a class="nav-link" href="categorias.php"><span class="fas fa-clipboard"></span> Categorias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="gestor.php"><span class="fas fa-folder"></span> Administrar</a>
+            <a class="nav-link" href="gestor.php"><span class="fas fa-folder"></span> Archivos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../procesos/usuario/salir.php" style="color: #ff0000;"><span class="fas fa-door-closed"></span> Salir</a>

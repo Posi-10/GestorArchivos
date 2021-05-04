@@ -20,5 +20,23 @@
       $query->close();
       return $exito;
     }
+    public function obtenerNombreArchivo($id_archivo){
+      $conexion = Conexion::conectar();
+      $sql = "SELECT nombre
+              FROM t_archivos 
+              WHERE id_archivo = '$id_archivo'";
+      $result = mysqli_query($conexion, $sql);
+      return mysqli_fetch_array($result)['nombre'];
+    }
+    public function eliminarArchivo($id_archivo){
+      $conexion = Conexion::conectar();
+      $sql = "DELETE FROM t_archivos
+              WHERE id_archivo = ?";
+      $query = $conexion->prepare($sql);
+      $query->bind_param('i', $id_archivo);
+      $exito = $query->execute();
+      $query->close();
+      return $exito;
+    }
   }
 ?>

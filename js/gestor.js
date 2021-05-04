@@ -9,9 +9,9 @@ function agregarArchivosGestor() {
         contentType: false,
         processData: false,
         success: function(respuesta) {
-            console.log(respuesta);
             respuesta = respuesta.trim();
             if (respuesta == 1) {
+                $('#frmArchivos')[0].reset();
                 $('#tablaGestorArchivos').load("gestor/tablaGestor.php");
                 swal({
                     title: "Correcto",
@@ -29,6 +29,45 @@ function agregarArchivosGestor() {
                     timer: 2000,
                 });
             }
+        }
+    });
+}
+
+function eliminarArchivo(id_archivo) {
+    swal({
+        title: "Alvertencia",
+        text: "¿Estas seguro de eliminar esté archivo?\nUna vez eliminada, no hay vuelta atras",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                type: "POST",
+                data: "id_archivo=" + id_archivo,
+                url: "../procesos/gestor/eliminarArchivo.php",
+                success: function(respuesta) {
+                    respuesta = respuesta.trim();
+                    if (respuesta == 1) {
+                        $('#tablaGestorArchivos').load("gestor/tablaGestor.php");
+                        swal({
+                            title: "Correcto",
+                            icon: "success",
+                            text: "¡Se elimino correctamente!",
+                            button: false,
+                            timer: 2000,
+                        });
+                    } else {
+                        swal({
+                            title: "Error",
+                            icon: "error",
+                            text: "¡Fallo al eliminar!",
+                            button: false,
+                            timer: 2000,
+                        });
+                    }
+                }
+            });
         }
     });
 }
