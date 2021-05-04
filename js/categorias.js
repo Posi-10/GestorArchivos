@@ -103,3 +103,43 @@ function obtenerDatosCategoria(id_categoria) {
         }
     });
 }
+
+function actualizaCategoria() {
+    if ($('#categoriaU').val() == "" || $('#categoriaU').val() == " ") {
+        swal({
+            title: "Alvertencia",
+            icon: "warning",
+            text: "¡No hay nada que cambiar!",
+            button: false,
+            timer: 2000,
+        });
+        return false;
+    } else {
+        $.ajax({
+            type: "POST",
+            data: $('#frmActualizaCategoria').serialize(),
+            url: "../procesos/categorias/actualizaCategoria.php",
+            success: function(respuesta) {
+                respuesta = respuesta.trim();
+                if (respuesta == 1) {
+                    $('#tablasCategorias').load("categorias/tablaCategoria.php");
+                    swal({
+                        title: "Correcto",
+                        icon: "success",
+                        text: "¡Se actualizo correctamente!",
+                        button: false,
+                        timer: 2000,
+                    });
+                } else {
+                    swal({
+                        title: "Correcto",
+                        icon: "success",
+                        text: "¡Fallo la actualizaión!",
+                        button: false,
+                        timer: 2000,
+                    });
+                }
+            }
+        });
+    }
+}

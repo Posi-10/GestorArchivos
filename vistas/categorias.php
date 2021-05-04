@@ -55,22 +55,21 @@
           </button>
         </div>
         <div class="modal-body">
-          <form action="" id="frmActualizarCategoria">
+          <form id="frmActualizaCategoria">
             <input type="text" id="id_categoria" name="id_categoria" hidden="">
             <label for="">Categoria</label>
             <input type="text" id="categoriaU" name="categoriaU" class="form-control">
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-success" id="actualizaCategoria">Actualizar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnCerrarCaregoria">Cerrar</button>
+          <button type="button" class="btn btn-success" id="btnActualizaCategoria">Actualizar</button>
         </div>
       </div>
     </div>
   </div>
 <?php
     include "footer.php";
-  }
 ?>
 <script src="../js/categorias.js"></script>
 <script type="text/javascript">
@@ -79,5 +78,13 @@
     $('#btnGuardarCategoria').click(function(){
       agregarCategoria();
     });
+    $('#btnActualizaCategoria').click(function(){
+      actualizaCategoria();
+    })
   });
 </script>
+<?php
+  }else{
+    header("location:../index.php");
+  }
+?>

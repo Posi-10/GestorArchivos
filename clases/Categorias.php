@@ -39,5 +39,18 @@
       );
       return $datos;
     }
+    public function actualizaCategoria($datos){
+      $conexion = Conexion::conectar();
+      $sql = "UPDATE t_categorias
+              SET nombre = ?
+              WHERE id_categoria = ?";
+      $query = $conexion->prepare($sql);
+      $query->bind_param("si", $datos['categoria'],
+                               $datos['id_categoria']);
+      $respuesta = $query->execute();
+      $query->close();
+      return $respuesta;
+
+    }
   }
 ?>
