@@ -71,3 +71,7 @@ function eliminarArchivo(id_archivo) {
         }
     });
 }
+
+function ver(id_archivo) {
+    alert(id_archivo);
+}

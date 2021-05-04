@@ -51,7 +51,11 @@
                 <span class="fas fa-download"></span>
               </a>
             </td>
-            <td></td>
+            <td>
+              <span class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#miraLo" onclick="ver(<?php echo $id_archivo?>)">
+                <span class="fas fa-eye"></span>
+              </span>
+            </td>
             <td style="text-align: center;">
             <span type="button" class="btn btn-outline-danger btn-sm" onclick="eliminarArchivo('<?php echo $id_archivo; ?>')">
               <span class="fas fa-trash"></span>
