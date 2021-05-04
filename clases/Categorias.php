@@ -25,5 +25,19 @@
       return $exito;
 
     }
+    public function obtenerDatosCategoria($id_categoria){
+      $conexion = Conexion::conectar();
+      $sql = "SELECT id_categoria,
+                     nombre
+              FROM t_categorias
+              WHERE id_categoria = '$id_categoria'";
+      $result = mysqli_query($conexion, $sql);
+      $categoria = mysqli_fetch_array($result);
+      $datos = array(
+        "id_categoria" => $categoria['id_categoria'],
+        "nombreCategoria" => $categoria['nombre']
+      );
+      return $datos;
+    }
   }
 ?>

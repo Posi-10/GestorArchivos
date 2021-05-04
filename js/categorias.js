@@ -90,3 +90,16 @@ function eliminarCategoria(id_categoria) {
         });
     }
 }
+
+function obtenerDatosCategoria(id_categoria) {
+    $.ajax({
+        type: "POST",
+        data: "id_categoria=" + id_categoria,
+        url: "../procesos/categorias/obtenerDatosCategoria.php",
+        success: function(respuesta) {
+            respuesta = jQuery.parseJSON(respuesta);
+            $('#id_categoria').val(respuesta['id_categoria']);
+            $('#categoriaU').val(respuesta['nombreCategoria'])
+        }
+    });
+}

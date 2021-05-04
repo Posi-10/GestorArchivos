@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../librerias/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="../librerias/datatable/dataTables.bootstrap4.min.css">
 </head>
-<body>
+<body style="background-color: #E9ECEF;">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
       <a class="navbar-brand" href="inicio.php">

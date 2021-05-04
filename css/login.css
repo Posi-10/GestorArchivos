@@ -1,8 +1,5 @@
-html {
-    background-color: #56baed;
-}
-
 body {
+    background-color: #E9ECEF;
     font-family: "Poppins", sans-serif;
     height: 100vh;
 }
@@ -40,7 +37,7 @@ h2 {
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: #fff;
+    background: #ffffff;
     padding: 30px;
     width: 90%;
     max-width: 450px;
