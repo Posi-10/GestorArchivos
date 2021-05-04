@@ -29,7 +29,7 @@
           <tr style="text-align: center;">
             <th>Categoria</th>
             <th>Nombre</th>
-            <th>Tipo de archivo</th>
+            <th>Extensión de archivo</th>
             <th>Descargar</th>
             <th>Visualizar</th>
             <th>Eliminar</th>
@@ -37,6 +37,7 @@
         </thead>
         <tbody>
           <?php
+            $extensionesValidas = array('png', 'jpg', 'pdf', 'mp3', 'mp4');
             while($mostrar = mysqli_fetch_array($exito)){
               $rutaDescarga = "../archivos/" . $id_usuarios . "/" . $mostrar['nombreArchivo'];
               $nombreArchivo = $mostrar['nombreArchivo'];
@@ -52,9 +53,17 @@
               </a>
             </td>
             <td>
+              <?php
+                for($i = 0; $i < count($extensionesValidas); $i++){
+                  if($extensionesValidas[$i] == $mostrar['tipoArchivo']){
+              ?>
               <span class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#miraLo" onclick="ver(<?php echo $id_archivo?>)">
                 <span class="fas fa-eye"></span>
               </span>
+              <?php
+                  }
+                }
+              ?>
             </td>
             <td style="text-align: center;">
             <span type="button" class="btn btn-outline-danger btn-sm" onclick="eliminarArchivo('<?php echo $id_archivo; ?>')">

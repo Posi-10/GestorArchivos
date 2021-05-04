@@ -73,5 +73,12 @@ function eliminarArchivo(id_archivo) {
 }
 
 function ver(id_archivo) {
-    alert(id_archivo);
+    $.ajax({
+        type: "POST",
+        data: "id_archivo=" + id_archivo,
+        url: "../procesos/gestor/obtenerArchivo.php",
+        success: function(respuesta) {
+            $('#archivoObtenido').html(respuesta);
+        }
+    });
 }
